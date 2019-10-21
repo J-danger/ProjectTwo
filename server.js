@@ -13,7 +13,7 @@ var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 var db = require("./models");
-const axios = require('axios');
+
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,16 +22,11 @@ app.use(express.json());
 app.use(express.static("public"));
 
 
-// Routes
-// =============================================================
-require("./routes/api-Routes.js")(app);
-
-
-app.get("/test", function (req, res){
-    axios.get("https://api.coinbase.com/v2/prices/:USD_BTC/buy").then(function(data){
-    res.json(data)
-    })
-})
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+  });
 
   app.get('/', function(req, res, next) {
     // Handle the get for this route
@@ -40,6 +35,10 @@ app.get("/test", function (req, res){
   app.post('/', function(req, res, next) {
     // Handle the post for this route
   })
+// Routes
+// =============================================================
+require("./routes/api-Routes.js")(app);
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
