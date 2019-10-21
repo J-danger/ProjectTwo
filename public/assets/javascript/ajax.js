@@ -17,8 +17,7 @@ function prices(){
     $.ajax({url: "https://api.binance.us/api/v3/ticker/price?symbol=BTCUSDT", success: function(response){
          console.log(response)
         // var btcLast = response.last    
-        //     console.log("BTC average: " + btcLast) 
-           
+        //     console.log("BTC average: " + btcLast)  S          
         }});
 
     $.ajax({url: "https://api.coinbase.com/v2/prices/:USD_BTC/buy", success: function(response){
