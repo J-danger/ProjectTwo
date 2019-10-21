@@ -21,9 +21,24 @@ app.use(express.json());
 // Static directory
 app.use(express.static("public"));
 
+
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+  });
+
+  app.get('/', function(req, res, next) {
+    // Handle the get for this route
+  });
+
+  app.post('/', function(req, res, next) {
+    // Handle the post for this route
+  })
 // Routes
 // =============================================================
 require("./routes/api-Routes.js")(app);
+
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
