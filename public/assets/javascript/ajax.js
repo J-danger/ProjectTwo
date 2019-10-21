@@ -16,7 +16,7 @@
         }});
         
         $.ajax({url: "http://cors-anywhere.herokuapp.com/https://api.binance.us/api/v3/ticker/price?symbol=BTCUSDT", success: function(response){
-            console.log(response)
+            console.log("BTC average: " + response.price)
             // var btcLast = response.last    
             //     console.log("BTC average: " + btcLast)  S          
         }});
